@@ -10,7 +10,6 @@
 
 - Java 8
 - Spring Boot 2.7.5
-- Spring Security
 - MinIO 8.4.5
 - PostgreSQL
 - H2 для тестирования
