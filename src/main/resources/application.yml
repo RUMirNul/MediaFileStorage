@@ -1,0 +1,58 @@
+server:
+  port: 8091
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+  datasource:
+    url: jdbc:postgresql://localhost:5432/rtkit_media_files_storage_db
+    username: test
+    password: test
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/db.changelog-master.yml
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+      file-size-threshold: 0
+      location: /tmp
+
+app:
+  minio:
+    # Minio Host
+    url: http://minio.backend:9000
+    # Minio Bucket name for your application
+    bucket: rtkit-media-file-storage-bucket
+    # Minio access key (login)
+    access-key: admin
+    # Minio secret key (password)
+    secret-key: password
+  file:
+    # Files extension whitelist
+    extensions:
+      - pdf
+      - doc
+      - docx
+      - ppt
+      - pptx
+      - gif
+      - jpeg
+      - png
+      - jpg
+      - svg
+      - mpeg
+      - mp4
+      - mov
+  # Thread pool settings. Now used for async methods.
+  threader-pool:
+    core-pool-size: 4
+    max-pool-size: 10
+    queue-capacity: 50
+    thread-name-prefix: async-task-thread-
+    wait-for-tasks-to-compile-on-shutdown: true

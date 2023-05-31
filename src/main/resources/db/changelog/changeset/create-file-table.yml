@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-file
+      author: a.svistunov
+      changes:
+        - createTable:
+            tableName: file
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: file_name
+                  type: varchar(56)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: original_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: extension
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
